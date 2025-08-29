@@ -1,1 +1,1 @@
-console.log("users controller")
+console.log("users controller");
