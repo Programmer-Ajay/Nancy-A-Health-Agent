@@ -1,10 +1,7 @@
-
 import cookieParser from "cookie-parser";
 import express from "express"
 import cors from "cors"
 const app=express();
-
-
 
 
 // middleware 
@@ -21,7 +18,15 @@ app.use(express.urlencoded({
     credentials:true
 }))
 
-
 app.use(cookieParser())
+
+
+// import   route
+import userRouter from "./src/routes/user.route.js"
+
+app.use("/api/v1/users",userRouter);
+
+
+
 
 export default app;

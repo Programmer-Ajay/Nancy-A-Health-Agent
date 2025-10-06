@@ -1,15 +1,13 @@
-
 import app from "./app.js";
 import dotenv from "dotenv"
- import { connectDb } from "./src/db/db.js";
+import { connectDb } from "./src/db/db.js";
 
- dotenv.config({
-    path:"../.env"
- })
+dotenv.config({
+    path:"./.env"
+})
 
-//  console.log(process.env.MONGODB_URL);
+console.log(process.env.MONGODB_URL);
 // routes
-
 
 
  //connection of db
@@ -33,4 +31,3 @@ import dotenv from "dotenv"
 
 
 
- 
