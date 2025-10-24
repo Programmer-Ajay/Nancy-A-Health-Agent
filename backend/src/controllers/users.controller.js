@@ -43,12 +43,14 @@ const registerUser = asyncHandler(async (req, res) => {
     if (existingUser) {
         throw new ApiError(409, "User with username or email already exists");
     }
-
+    
+     
     const user = await User.create({username, email, password});
-
+       console.log("user",user)
     const createdUser = await User.findById(user._id).select(
-        "-password -refreshToken"
+        "-password "
     )
+    
 
     if(!createdUser) {
         throw new ApiError(500, "Something went wrong while registering the user")
