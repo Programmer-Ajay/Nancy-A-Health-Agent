@@ -170,7 +170,7 @@ const loginUser = asyncHandler(async(req, res) => {
                 secure: true
             }
     
-            const {accessToken, newRefreshToken} = await generateAccessAndRefreshTokens(user._id)
+            const {accessToken, refreshToken: newRefreshToken} = await generateAccessAndRefreshTokens(user._id)
     
             return res
             .status(200)
@@ -190,9 +190,22 @@ const loginUser = asyncHandler(async(req, res) => {
 
 })
 
+    //Get User Details
+
+    const getUserDetails = asyncHandler(async (req, res) => {
+            const user = await User.findById(req.user._id).select("-password -refreshToken");
+            if (!user) {
+                throw new ApiError(404, "User not found");
+            }
+            return res
+            .status(200)
+            .json(new ApiResponse(200, user, "User details fetched successfully"));   
+    })
+
 export {
     registerUser,
     loginUser,
-    // logoutUser,
-    // refreshAccessToken, registerUser
+    logoutUser,
+    refreshAccessToken,
+    getUserDetails
 };
